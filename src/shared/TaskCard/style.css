@@ -28,11 +28,13 @@
     border-radius: 3px;
     outline: none;
     font-size: 1em;
+    background-color: transparent;
 }
 
 
 .task-card .task-body input:disabled{
     border: none !important;
+
 }
 .task-card .task-body p{
     color: gray;
