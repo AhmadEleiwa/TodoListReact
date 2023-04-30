@@ -24,13 +24,20 @@
 
 .task-card .task-body input{
     width: 100%;
-    padding: 0.2em;
+    padding: 0.2em 0;
     border-radius: 3px;
-    border: 1px solid #11A8E6;
     outline: none;
+    font-size: 1em;
 }
 
 
 .task-card .task-body input:disabled{
-    border: none;
+    border: none !important;
+}
+.task-card .task-body p{
+    color: gray;
+}
+.task-card .control{
+    display: flex;
+    gap: 1em;
 }
