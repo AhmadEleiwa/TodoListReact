@@ -13,9 +13,8 @@ const CheckBox = props => {
             props.onClick() 
     }
     return <>
-        {isChecked == true ?
-            <FontAwesomeIcon onClick={clickHandler}  icon={faCheckCircle} color='#11A8E6' fontSize={'2em'} />
-            : <div onClick={clickHandler}  className='empty-cricle' />
+        {isChecked ? <FontAwesomeIcon onClick={clickHandler} fontWeight={'100%'}  icon={faCheckCircle} color='#11A8E6' fontSize={'32px'} />
+        :<FontAwesomeIcon onClick={clickHandler}  className='empty-cricle' fontWeight={'100%'}  icon={faCheckCircle} color='transparent' fontSize={'31px'} />
         }
     </>
 
