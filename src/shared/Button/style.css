@@ -1,0 +1,15 @@
+.btn{
+    background-color: #095B83;
+    border: 0;
+    padding: 1em 3em ;
+    color: white;
+    border-radius: 8px;
+    transition: all 0.17s ease;
+}
+
+.btn:hover,
+.btn:focus,
+.btn:active{
+    background-color: #236687;
+
+}

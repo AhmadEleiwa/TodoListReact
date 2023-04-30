@@ -1,0 +1,45 @@
+.task-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px 0 #66666640;
+    height: 80px;
+}
+
+.task-card > *{
+    margin: 1em !important;
+}
+.task-card .task-body {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    justify-content: center;
+    gap: 0;
+}
+
+.task-card .task-body * {
+    margin: 0; 
+}
+
+.task-card .task-body input{
+    width: 100%;
+    padding: 0.2em 0;
+    border-radius: 3px;
+    outline: none;
+    font-size: 1em;
+    background-color: transparent;
+}
+
+
+.task-card .task-body input:disabled{
+    border: none !important;
+
+}
+.task-card .task-body p{
+    color: gray;
+}
+.task-card .control{
+    display: flex;
+    gap: 1em;
+}

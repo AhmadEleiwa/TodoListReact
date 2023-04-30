@@ -1,0 +1,25 @@
+.titled-card {
+    width: 258.99px;
+    height: 128px;
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    color: white;
+}
+.titled-card  > * {
+    margin: 0em;
+}
+.titled-card p{
+    font-size: 4em;
+}
+.titled-card .icon{
+    transform: rotate(28.19deg);
+    position: absolute;
+    top: 20%;
+    right: 0;
+    opacity: 0.6;
+}
