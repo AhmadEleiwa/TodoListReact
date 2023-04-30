@@ -1,0 +1,11 @@
+.header{
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    height: 4em;
+}
+
+.header > *{
+    margin: 1em;
+}

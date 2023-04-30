@@ -1,7 +1,7 @@
 import { createContext } from "react";
 
 
-const darkMode ={
+export const darkMode ={
     paper:'#095B83',
     dark:'#095B83',
     light:"#BBE7FC",
@@ -10,7 +10,7 @@ const darkMode ={
     buttonDisabled:'#818181',
     paperBorder:'white'
 }
-const lightMode ={
+export const lightMode ={
     paper:'white',
     dark:'#095B83',
     light:"#BBE7FC",
@@ -21,6 +21,7 @@ const lightMode ={
 }
 const Theme = createContext({
     mode:'light',
+    switchHandler:()=>{console.log(11)},
     pallete: lightMode
     
 })
