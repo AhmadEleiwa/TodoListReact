@@ -1,6 +1,6 @@
 import './style.css'
 const Button = props =>{
-    return <button className='btn' onClick={props.click}>
+    return <button className='btn' onClick={props.onClick}>
         {props.children}
     </button>
 }
