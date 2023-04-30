@@ -1,8 +1,8 @@
 .empty-cricle {
-    display: inline-block;
     box-sizing: border-box;
     border: 1px solid gray;
     border-radius: 50%;
     width: 2em;
     height: 2em;
+
 }
