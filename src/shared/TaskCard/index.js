@@ -21,12 +21,12 @@ const TaskCard = props => {
 
     const enableEdit = () => {
         if (taskEnable !== true){
-            props.func(props.index)
+            props.setIndexHandler(props.index)
         }
     }
     
     const taskCheckHandler = () => {
-        props.func(-1)
+        props.setIndexHandler(-1)
         setTaskEnable(!taskEnable)
     }
 
