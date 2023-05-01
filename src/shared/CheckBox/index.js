@@ -7,7 +7,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { useContext, useState } from 'react'
 import Theme from '../../utils/Theme'
 const CheckBox = props => {
-    const [isChecked, setIsChecked] = useState(false)
+    const [isChecked, setIsChecked] = useState(props.checked)
 
     const theme = useContext(Theme)
 
@@ -18,7 +18,7 @@ const CheckBox = props => {
     }
     return <>
         {isChecked ? <FontAwesomeIcon onClick={clickHandler} fontWeight={'100%'}  icon={faCheckCircle} color={theme.pallete.main} fontSize={'32px'} />
-        :<FontAwesomeIcon onClick={clickHandler}  className='empty-cricle' fontWeight={'100%'}  icon={faCheckCircle} color='transparent' fontSize={'32px'} />
+        :<FontAwesomeIcon onClick={clickHandler}  className='empty-cricle' style={{borderColor:theme.pallete.textSecondary}} fontWeight={'100%'}  icon={faCheckCircle} color='transparent' fontSize={'32px'} />
         }
     </>
 

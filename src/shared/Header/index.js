@@ -12,7 +12,10 @@ const Header =props=>{
 
     }
 
-    return <header className="header" style={{backgroundColor:theme.pallete.paper}}>
+    return <header className="header" style={{
+        backgroundColor:theme.pallete.paper,
+        boxShadow:`0 2px 8px 0 ${theme.pallete.dropShadow}`
+        }}>
         <Siwtch />
         <Logo />
         <Button onClick={addTaskHandler} >ADD NEW TASK</Button>

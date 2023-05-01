@@ -11,7 +11,8 @@ export const darkMode ={
     paperBorder:'white',
     textPrimary: '#fafafafa',
     textSecondary: '#afafaf',
-
+    backgroundPaper:'#1F3A47',
+    dropShadow:'#33333360'
 }
 export const lightMode ={
     paper:'white',
@@ -23,6 +24,8 @@ export const lightMode ={
     paperBorder:'#11A8E6',
     textPrimary: '#121212',
     textSecondary: '#4f4f4f',
+    backgroundPaper:'#F5F5F5',
+    dropShadow:'#66666640'
 }
 const Theme = createContext({
     mode:'light',
