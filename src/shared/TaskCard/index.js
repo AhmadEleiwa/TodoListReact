@@ -18,7 +18,7 @@ const TaskCard = props => {
     const deleteTaskHandler = () => {
         const data = dataContext.data.filter(p => p.id !== props.id)
         dataContext.changeHandler(data)
-        
+
     }
     const editTask = (e) => {
         setInputData(e.target.value)
@@ -36,13 +36,17 @@ const TaskCard = props => {
     
     const taskCheckHandler = () => {
         props.setIndexHandler(-1)
+        const i = dataContext.data.findIndex(p => p.id === props.id)
         setTaskEnable(!taskEnable)
+        dataContext.data[i].state =  !taskEnable
+        dataContext.changeHandler(dataContext.data)
     }
 
     return <div className='task-card'
         style={{
             backgroundColor: taskEnable ? theme.pallete.disabled : theme.pallete.paper
         }}>
+            
         <CheckBox onClick={ taskCheckHandler} checked={taskEnable} />
         <div className='task-body' >
             <input style={{ color: theme.pallete.main , border:`1px solid ${theme.pallete.paperBorder}`}} onChange={editTask} disabled={props.inputEnable} value={inputData} />
