@@ -36,7 +36,7 @@ const TaskCard = props => {
         <CheckBox onClick={ taskCheckHandler} />
         <div className='task-body' >
             <input style={{ color: theme.pallete.main , border:`1px solid ${theme.pallete.paperBorder}`}} onChange={editTask} disabled={inputEnable} value={inputData} />
-            <p>{props.assignee}</p>
+            <p style={{color:theme.pallete.textSecondary}}>{props.assignee}</p>
         </div>
         <div className='control'>
             <FontAwesomeIcon icon={faEdit} onClick={enableEdit} color={!taskEnable ? theme.pallete.main : theme.pallete.buttonDisabled} />
