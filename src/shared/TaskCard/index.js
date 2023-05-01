@@ -44,7 +44,8 @@ const TaskCard = props => {
 
     return <div className='task-card'
         style={{
-            backgroundColor: taskEnable ? theme.pallete.disabled : theme.pallete.paper
+            backgroundColor: taskEnable ? theme.pallete.disabled : theme.pallete.paper,
+            boxShadow:`0 2px 8px 0 ${theme.pallete.dropShadow}`
         }}>
 
         <CheckBox onClick={taskCheckHandler} checked={taskEnable} />

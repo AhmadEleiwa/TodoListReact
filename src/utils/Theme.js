@@ -12,7 +12,7 @@ export const darkMode ={
     textPrimary: '#fafafafa',
     textSecondary: '#afafaf',
     backgroundPaper:'#1F3A47',
-    dropShadow:'#44444450'
+    dropShadow:'#33333360'
 }
 export const lightMode ={
     paper:'white',
