@@ -17,6 +17,8 @@ const TaskCard = props => {
     }
     const editTask = (e) => {
         setInputData(e.target.value)
+        
+
     }
 
     const enableEdit = () => {
@@ -34,7 +36,7 @@ const TaskCard = props => {
         style={{
             backgroundColor: taskEnable ? theme.pallete.disabled : theme.pallete.paper
         }}>
-        <CheckBox onClick={ taskCheckHandler} />
+        <CheckBox onClick={ taskCheckHandler} checked={taskEnable} />
         <div className='task-body' >
             <input style={{ color: theme.pallete.main , border:`1px solid ${theme.pallete.paperBorder}`}} onChange={editTask} disabled={props.inputEnable} value={inputData} />
             <p style={{color:theme.pallete.textSecondary}}>{props.assignee}</p>
