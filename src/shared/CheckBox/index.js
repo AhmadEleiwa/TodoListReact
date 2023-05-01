@@ -7,7 +7,7 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import { useContext, useState } from 'react'
 import Theme from '../../utils/Theme'
 const CheckBox = props => {
-    const [isChecked, setIsChecked] = useState(false)
+    const [isChecked, setIsChecked] = useState(props.checked)
 
     const theme = useContext(Theme)
 
