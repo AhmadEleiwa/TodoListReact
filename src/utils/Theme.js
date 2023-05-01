@@ -8,7 +8,10 @@ export const darkMode ={
     main:'#11A8E6',
     disabled:'#3E5663',
     buttonDisabled:'#818181',
-    paperBorder:'white'
+    paperBorder:'white',
+    textPrimary: '#fafafafa',
+    textSecondary: '#afafaf',
+
 }
 export const lightMode ={
     paper:'white',
@@ -17,7 +20,9 @@ export const lightMode ={
     main:'#11A8E6',
     disabled:'#E3E3E380',
     buttonDisabled:'#818181',
-    paperBorder:'#11A8E6'
+    paperBorder:'#11A8E6',
+    textPrimary: '#121212',
+    textSecondary: '#4f4f4f',
 }
 const Theme = createContext({
     mode:'light',
