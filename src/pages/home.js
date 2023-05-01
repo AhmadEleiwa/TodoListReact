@@ -5,6 +5,7 @@ import TaskList from "../shared/TaskList"
 import { load, store } from "../utils/localStorageUtils"
 
 import DataContext from '../utils/localStorageUtils'
+import Container from "../shared/Container"
 
 const HomePage = props => {
     const [dataLocal, setDataLocal] = useState(load('data'))
@@ -23,8 +24,10 @@ const HomePage = props => {
         data: dataLocal ? dataLocal : [],
         changeHandler: dataHandler
     }}>
-        <Header />
-        <TaskList />
+        <Container>
+            <Header />
+            <TaskList />
+        </Container>
 
     </ DataContext.Provider>
 }
