@@ -13,7 +13,11 @@ const Header =props=>{
     const addTaskHandler = event =>{
         // some logic here
         dataContext.changeHandler([...dataContext.data, {id:uuid(), value:'test', assignee:'ahmad', state:false}])
-
+        dataContext.statHandler({
+            ...dataContext.stastics, 
+            all:dataContext.stastics.all +1,
+            pending:dataContext.stastics.pending + 1
+        })
     }
 
     return <header className="header" style={{
