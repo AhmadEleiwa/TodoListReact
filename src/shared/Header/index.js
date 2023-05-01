@@ -4,11 +4,15 @@ import Siwtch from "./Switch"
 import './style.css'
 import { useContext } from "react"
 import Theme from "../../utils/Theme"
+import DataContext from "../../utils/localStorageUtils"
+import uuid from 'react-uuid';
 const Header =props=>{
     const theme = useContext(Theme)
+    const dataContext = useContext(DataContext)
 
     const addTaskHandler = event =>{
         // some logic here
+        dataContext.changeHandler([...dataContext.data, {id:uuid(), value:'test', assignee:'ahmad', state:false}])
 
     }
 
