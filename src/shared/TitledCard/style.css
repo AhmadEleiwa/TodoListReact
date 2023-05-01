@@ -17,9 +17,9 @@
     font-size: 4em;
 }
 .titled-card .icon{
-    transform: rotate(28.19deg);
+    transform: rotate(-20.19deg);
     position: absolute;
-    top: 20%;
+    top: 10%;
     right: 0;
     opacity: 0.6;
 }
