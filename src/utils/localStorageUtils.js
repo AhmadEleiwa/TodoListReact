@@ -12,6 +12,7 @@ const load = (dataName) => {
 const DataContext = createContext({
     data:[],
     stastics : {all:0, done:0, pending:0, deleted: 0},
+    changeHandlerLocal:()=>{},
     statHandler: ()=>{},
     changeHandler: ()=>{}
 })
