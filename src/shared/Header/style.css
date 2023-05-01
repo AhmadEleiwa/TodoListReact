@@ -4,7 +4,8 @@
     display: flex;
     justify-content: space-between;
     height: 4em;
-    box-shadow: 0 2px 8px 0 #efefef;
+
+
 }
 
 .header > *{
