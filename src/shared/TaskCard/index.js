@@ -4,6 +4,7 @@ import { useContext, useState } from 'react'
 import CheckBox from '../CheckBox'
 import './style.css'
 import Theme from '../../utils/Theme'
+import DataContext from '../../utils/localStorageUtils'
 
 
 const TaskCard = props => {
@@ -11,19 +12,25 @@ const TaskCard = props => {
     const [taskEnable, setTaskEnable] = useState(props.taskEnable)
     
     const theme = useContext(Theme)
+    const dataContext = useContext(DataContext)
+
 
     const deleteTaskHandler = () => {
-        // delete task logic
+        const data = dataContext.data.filter(p => p.id !== props.id)
+        dataContext.changeHandler(data)
+        
     }
     const editTask = (e) => {
         setInputData(e.target.value)
-        
+        const i = dataContext.data.findIndex(p => p.id === props.id)
+        dataContext.data[i].value = e.target.value
+        dataContext.changeHandler(dataContext.data)
 
     }
 
     const enableEdit = () => {
         if (taskEnable !== true){
-            props.setIndexHandler(props.index)
+            props.setIndexHandler(props.id)
         }
     }
     
@@ -43,7 +50,7 @@ const TaskCard = props => {
         </div>
         <div className='control'>
             <FontAwesomeIcon icon={faEdit} onClick={enableEdit} color={!taskEnable ? theme.pallete.main : theme.pallete.buttonDisabled} />
-            <FontAwesomeIcon icon={faTrash} color={'red'} />
+            <FontAwesomeIcon onClick={deleteTaskHandler} icon={faTrash} color={'red'} />
         </div>
     </div>
 }
