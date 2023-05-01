@@ -8,8 +8,8 @@ import Theme from '../../utils/Theme'
 
 const TaskCard = props => {
     const [inputData, setInputData] = useState(props.value)
-    const [inputEnable, setInputEnable] = useState(props.inputEnable)
     const [taskEnable, setTaskEnable] = useState(props.taskEnable)
+    
     const theme = useContext(Theme)
 
     const deleteTaskHandler = () => {
@@ -20,12 +20,13 @@ const TaskCard = props => {
     }
 
     const enableEdit = () => {
-        if (taskEnable !== true)
-            setInputEnable(!inputEnable)
+        if (taskEnable !== true){
+            props.func(props.index)
+        }
     }
     
     const taskCheckHandler = () => {
-        setInputEnable(true)
+        props.func(-1)
         setTaskEnable(!taskEnable)
     }
 
@@ -35,7 +36,7 @@ const TaskCard = props => {
         }}>
         <CheckBox onClick={ taskCheckHandler} />
         <div className='task-body' >
-            <input style={{ color: theme.pallete.main , border:`1px solid ${theme.pallete.paperBorder}`}} onChange={editTask} disabled={inputEnable} value={inputData} />
+            <input style={{ color: theme.pallete.main , border:`1px solid ${theme.pallete.paperBorder}`}} onChange={editTask} disabled={props.inputEnable} value={inputData} />
             <p style={{color:theme.pallete.textSecondary}}>{props.assignee}</p>
         </div>
         <div className='control'>
