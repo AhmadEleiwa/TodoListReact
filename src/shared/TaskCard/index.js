@@ -10,7 +10,7 @@ import DataContext from '../../utils/localStorageUtils'
 const TaskCard = props => {
     const [inputData, setInputData] = useState(props.value)
     const [taskEnable, setTaskEnable] = useState(props.taskEnable)
-    
+
     const theme = useContext(Theme)
     const dataContext = useContext(DataContext)
 
@@ -29,16 +29,16 @@ const TaskCard = props => {
     }
 
     const enableEdit = () => {
-        if (taskEnable !== true){
+        if (taskEnable !== true) {
             props.setIndexHandler(props.id)
         }
     }
-    
+
     const taskCheckHandler = () => {
         props.setIndexHandler(-1)
         const i = dataContext.data.findIndex(p => p.id === props.id)
         setTaskEnable(!taskEnable)
-        dataContext.data[i].state =  !taskEnable
+        dataContext.data[i].state = !taskEnable
         dataContext.changeHandler(dataContext.data)
     }
 
@@ -46,15 +46,26 @@ const TaskCard = props => {
         style={{
             backgroundColor: taskEnable ? theme.pallete.disabled : theme.pallete.paper
         }}>
-            
-        <CheckBox onClick={ taskCheckHandler} checked={taskEnable} />
+
+        <CheckBox onClick={taskCheckHandler} checked={taskEnable} />
         <div className='task-body' >
-            <input style={{ color: theme.pallete.main , border:`1px solid ${theme.pallete.paperBorder}`}} onChange={editTask} disabled={props.inputEnable} value={inputData} />
-            <p style={{color:theme.pallete.textSecondary}}>{props.assignee}</p>
+            <input style={{ 
+                color: theme.pallete.main, 
+                border: `1px solid ${theme.pallete.paperBorder}`, 
+                textDecoration: taskEnable ? "line-through" : "none" }} 
+                onChange={editTask} disabled={props.inputEnable} 
+                value={inputData} />
+            <p style={{ color: theme.pallete.textSecondary }}>{props.assignee}</p>
         </div>
         <div className='control'>
-            <FontAwesomeIcon icon={faEdit} onClick={enableEdit} color={!taskEnable ? theme.pallete.main : theme.pallete.buttonDisabled} />
-            <FontAwesomeIcon onClick={deleteTaskHandler} icon={faTrash} color={'red'} />
+            <FontAwesomeIcon 
+            icon={faEdit} 
+            onClick={enableEdit} 
+            color={!taskEnable ? theme.pallete.main : theme.pallete.buttonDisabled} />
+            <FontAwesomeIcon 
+            onClick={deleteTaskHandler} 
+            icon={faTrash} 
+            color={'red'} />
         </div>
     </div>
 }
