@@ -2,23 +2,18 @@ import Button from "../Button"
 import Logo from "./Logo"
 import Siwtch from "./Switch"
 import './style.css'
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import Theme from "../../utils/Theme"
-import DataContext from "../../utils/localStorageUtils"
-import uuid from 'react-uuid';
+
+
+import Model from "../Model"
 const Header =props=>{
     const theme = useContext(Theme)
-    const dataContext = useContext(DataContext)
+  
 
-    const addTaskHandler = event =>{
-        // some logic here
-        dataContext.changeHandler([...dataContext.data, {id:uuid(), value:'test', assignee:'ahmad', state:false}])
-        dataContext.statHandler({
-            ...dataContext.stastics, 
-            all:dataContext.stastics.all +1,
-            pending:dataContext.stastics.pending + 1
-        })
-    }
+    const [modelOpen ,setModelOpen] = useState(false)
+
+
 
     return <header className="header" style={{
         backgroundColor:theme.pallete.paper,
@@ -26,7 +21,8 @@ const Header =props=>{
         }}>
         <Siwtch />
         <Logo />
-        <Button onClick={addTaskHandler} >ADD NEW TASK</Button>
+        <Button onClick={()=>{setModelOpen(true)}} >ADD NEW TASK</Button>
+        <Model isOpen={modelOpen} onClose={()=>{setModelOpen(false)}} />
     </header>
 }
 export default Header
