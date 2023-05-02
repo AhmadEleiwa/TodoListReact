@@ -5,7 +5,7 @@
     margin-top: 1em;
     overflow-y: auto;
     height: 500px;
-    padding: 0 1em;
+    padding-right: 1em;
 }
 .task-list::-webkit-scrollbar{
     background-color: #efefef;
