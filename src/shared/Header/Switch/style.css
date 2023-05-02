@@ -1,0 +1,21 @@
+.switch{
+    width: 4em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    position: relative;
+    border-radius: 3px;
+}
+.switch .icon{
+    z-index: 1;
+}
+.switch .thumb{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    z-index: 0;
+    transition: left 0.17s ease;
+    border-radius: 3px;
+}
