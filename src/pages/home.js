@@ -37,7 +37,7 @@ const HomePage = props => {
 
 
     return <DataContext.Provider value={{
-        data: dataLocal,
+        data: dataLocal?dataLocal:[],
         stastics: stat ? stat : { all: 0, done: 0, pending: 0, deleted: 0 },
         changeHandlerLocal: dataHandlerLocal,
         statHandler: statHandler,
