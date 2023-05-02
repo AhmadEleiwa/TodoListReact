@@ -1,12 +1,16 @@
-import { useContext } from 'react'
+import { useContext, useRef, useState } from 'react'
 import DataContext from '../../utils/localStorageUtils'
 import Button from '../Button'
+import Model from '../Model'
 
 import './style.css'
 
 const ControlButtons = props => {
+    const [modelOpen, setModelOpen] = useState(false)
 
     const dataContext = useContext(DataContext)
+
+    const handler = useRef({ title: '', handler: null })
 
     const markAllHandler = () => {
         let data = [...dataContext.data]
@@ -46,27 +50,46 @@ const ControlButtons = props => {
         let data = [...dataContext.data]
         let ls = {}
         for (let item of data) {
-            if (ls[item.assignee]===undefined)
+            if (ls[item.assignee] === undefined)
                 ls[item.assignee] = [item]
             else
                 ls[item.assignee].push(item)
         }
         let data_filtered = []
 
-        for(let item in ls){
+        for (let item in ls) {
             console.log(item)
             data_filtered = [...data_filtered, ...ls[item]]
         }
-    
+
         dataContext.changeHandlerLocal(data_filtered)
 
+    }
+
+
+    const openHandler = (value) => {
+        setModelOpen(true)
+        handler.current = value
     }
     return <div className='control-buttons'>
         <Button onClick={markAllHandler}>Mark All as Done</Button>
         <Button onClick={marAsUndone}>Mark All as Un-Done</Button>
-        <Button onClick={clearDoneTask} >Clear Done Tasks</Button>
-        <Button onClick={clearAll}>Clear All Tasks</Button>
+        <Button onClick={() => {
+            openHandler({
+                title: 'Are sure for deleteing all tasks',
+                handler: clearDoneTask
+            })
+        }} >Clear Done Tasks</Button>
+        <Button onClick={() => {
+            openHandler({
+                title: 'Are sure for deleteing all tasks',
+                handler: clearAll
+            }
+            )
+        }}>Clear All Tasks</Button>
         <Button onClick={groupByAssignee}>Group By Assignee</Button>
+        <Model isOpen={modelOpen} conformModel submitHandler={handler.current.handler} onClose={() => { setModelOpen(false) }} />
+
     </div>
 }
 
