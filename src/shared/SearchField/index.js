@@ -11,7 +11,7 @@ const SearchField = props => {
     const theme = useContext(Theme)
     const dataContext = useContext(DataContext)
     
-    const [baseData, setbaseData] = useState(dataContext.data)
+    const [baseData] = useState(dataContext.data)
 
     const searchHandler = (event) =>{
         let filtered_data = baseData.filter((item) =>  item.value.match(event.target.value)  || item.assignee.match(event.target.value) )
