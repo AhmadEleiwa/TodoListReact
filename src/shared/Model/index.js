@@ -29,9 +29,10 @@ const Model = props => {
         props.onClose()
     }
     return <>
+        {props.isOpen && <div className='black-drop' onClick={props.onClose}></div>}
         {props.isOpen && <div className='model' style={{
             backgroundColor:theme.pallete.backgroundPaper,
-            boxShadow:`0px 5px 2em 1em ${theme.pallete.dropShadow}`
+            boxShadow:`0px 2px 8px 0 ${theme.pallete.dropShadow}`
         }}>
             {props.conformModel
             ? <form onSubmit={(e)=>{
