@@ -6,6 +6,7 @@
     overflow-y: auto;
     height: 500px;
     padding-right: 1em;
+    padding-left: 3px;
 }
 .task-list::-webkit-scrollbar{
     background-color: #efefef;
