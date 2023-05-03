@@ -13,6 +13,7 @@ import './style.css'
 const HomePage = props => {
     const [dataLocal, setDataLocal] = useState(load('data'))
     const [stat, setStat] = useState(load('stat'))
+    const [allowGroupByAssigne, setAllowGroupByAssignee] = useState(false)
 
     const statHandler = (st) => {
         setStat(st)
@@ -49,8 +50,8 @@ const HomePage = props => {
                 <Statsics />
                 <div className="body">
                     <SearchField />
-                    <ControlButtons />
-                    <TaskList />
+                    <ControlButtons groupByAssignee={()=>setAllowGroupByAssignee((prev) => !prev)} />
+                    <TaskList groupByAssignee={allowGroupByAssigne} />
                 </div>
             </div>
         </Container>
