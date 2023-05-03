@@ -23,3 +23,15 @@
     right: 0;
     opacity: 0.6;
 }
+
+
+@media screen and (max-width:390px) {
+    .titled-card{
+        width: auto;
+        height: 82px;
+        font-size: 0.8em;
+    }
+    .titled-card .icon{
+        font-size: 6em;
+    }
+}
