@@ -47,23 +47,7 @@ const ControlButtons = props => {
 
     }
     const groupByAssignee = () => {
-        let data = [...dataContext.data]
-        let ls = {}
-        for (let item of data) {
-            if (ls[item.assignee] === undefined)
-                ls[item.assignee] = [item]
-            else
-                ls[item.assignee].push(item)
-        }
-        let data_filtered = []
-
-        for (let item in ls) {
-            console.log(item)
-            data_filtered = [...data_filtered, ...ls[item]]
-        }
-
-        dataContext.changeHandlerLocal(data_filtered)
-
+        props.groupByAssignee()
     }
 
 

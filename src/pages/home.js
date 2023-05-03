@@ -9,10 +9,11 @@ import Container from "../shared/Container"
 import ControlButtons from "../shared/ControlButtons"
 import Statsics from "../shared/Statisics"
 import SearchField from "../shared/SearchField"
-
+import './style.css'
 const HomePage = props => {
     const [dataLocal, setDataLocal] = useState(load('data'))
     const [stat, setStat] = useState(load('stat'))
+    const [allowGroupByAssigne, setAllowGroupByAssignee] = useState(false)
 
     const statHandler = (st) => {
         setStat(st)
@@ -37,7 +38,7 @@ const HomePage = props => {
 
 
     return <DataContext.Provider value={{
-        data: dataLocal,
+        data: dataLocal?dataLocal:[],
         stastics: stat ? stat : { all: 0, done: 0, pending: 0, deleted: 0 },
         changeHandlerLocal: dataHandlerLocal,
         statHandler: statHandler,
@@ -45,12 +46,12 @@ const HomePage = props => {
     }}>
         <Header />
         <Container>
-            <div style={{ width: '90%',display:'flex', margin:'0 auto' , gap:'1em', justifyContent:'center'}}>
+            <div className="box">
                 <Statsics />
-                <div style={{width:'80%'}}>
+                <div className="body">
                     <SearchField />
-                    <ControlButtons />
-                    <TaskList />
+                    <ControlButtons groupByAssignee={()=>setAllowGroupByAssignee((prev) => !prev)} />
+                    <TaskList groupByAssignee={allowGroupByAssigne} />
                 </div>
             </div>
         </Container>

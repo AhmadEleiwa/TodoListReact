@@ -7,6 +7,8 @@ import Theme from "../../utils/Theme"
 
 
 import Model from "../Model"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faAdd } from "@fortawesome/free-solid-svg-icons"
 const Header =props=>{
     const theme = useContext(Theme)
   
@@ -21,7 +23,8 @@ const Header =props=>{
         }}>
         <Siwtch />
         <Logo />
-        <Button onClick={()=>{setModelOpen(true)}} >ADD NEW TASK</Button>
+        <Button className='btn-desktop' onClick={()=>{setModelOpen(true)}}  >ADD NEW TASK</Button>
+        <FontAwesomeIcon className="btn-mobile" color={theme.pallete.main}  onClick={()=>{setModelOpen(true)}}   icon={faAdd} />
         <Model isOpen={modelOpen} onClose={()=>{setModelOpen(false)}} />
     </header>
 }

@@ -6,6 +6,7 @@
     overflow-y: auto;
     height: 500px;
     padding-right: 1em;
+    padding-left: 3px;
 }
 .task-list::-webkit-scrollbar{
     background-color: #efefef;
@@ -14,4 +15,10 @@
     background: #095B83;
     border-radius: 4em;
    
+}
+
+@media screen and (max-width:390px) {
+    .task-list{
+        width: 100%;
+    }
 }

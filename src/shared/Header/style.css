@@ -1,4 +1,4 @@
-.header{
+.header {
     width: 100%;
     align-items: center;
     display: flex;
@@ -8,6 +8,25 @@
 
 }
 
-.header > *{
+.btn-desktop {
+    display: block;
+}
+
+.btn-mobile {
+    display: none;
+}
+
+.header>* {
     margin: 1em;
+}
+
+@media screen and (max-width:390px) {
+    .btn-desktop {
+        display: none;
+    }
+
+    .btn-mobile {
+        display: block  ;
+    }
+
 }
