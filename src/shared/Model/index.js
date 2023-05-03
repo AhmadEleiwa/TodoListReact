@@ -6,7 +6,7 @@ import uuid from 'react-uuid';
 import './style.css'
 
 const Model = props => {
-    const [inputData , setInputData] = useState({value:'', assignee:''})
+    const [inputData , setInputData] = useState({value:'', assignee:''});
 
     const theme = useContext(Theme)
     const dataContext = useContext(DataContext)
