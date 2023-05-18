@@ -1,20 +1,41 @@
-import TitledCard from '../TitledCard'
-import { faCheckToSlot, faCheck, faClock, faTrash} from '@fortawesome/free-solid-svg-icons'
-import { useContext } from 'react'
-import DataContext from '../../utils/localStorageUtils'
+import TitledCard from "../TitledCard";
+import {
+  faCheckToSlot,
+  faCheck,
+  faClock,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
 
-import './style.css'
+import "./style.css";
+import { useData } from "../../contexts/DataContext";
 
-const Statsics = props =>{
-    const dataContext = useContext(DataContext)
+const Statsics = (props) => {
+  const dataContext = useData();
 
-
-    return <div className='statisics-list'>
-        <TitledCard title='TODOS' value={dataContext.stastics.all} icon={faCheckToSlot} />
-        <TitledCard title='Done' value={dataContext.stastics.done} icon={faCheck} />
-        <TitledCard title='PENDING' value={dataContext.stastics.pending}  icon={faClock} />
-        <TitledCard title='DELETED' value={dataContext.stastics.deleted} icon={faTrash} />
+  return (
+    <div className="statisics-list">
+      <TitledCard
+        title="TODOS"
+        value={dataContext.statistics.all}
+        icon={faCheckToSlot}
+      />
+      <TitledCard
+        title="Done"
+        value={dataContext.statistics.done}
+        icon={faCheck}
+      />
+      <TitledCard
+        title="PENDING"
+        value={dataContext.statistics.pending}
+        icon={faClock}
+      />
+      <TitledCard
+        title="DELETED"
+        value={dataContext.statistics.deleted}
+        icon={faTrash}
+      />
     </div>
-}
+  );
+};
 
-export default Statsics
+export default Statsics;

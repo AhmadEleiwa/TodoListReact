@@ -4,10 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 
-import { useContext } from 'react'
-import Theme from '../../utils/Theme'
+import { useTheme } from '../../contexts/Theme'
 const CheckBox = props => {
-    const theme = useContext(Theme)
+    const theme = useTheme()    
 
     const clickHandler = () =>{
         if(props.onClick)

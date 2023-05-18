@@ -1,14 +1,14 @@
-import { useContext, useRef, useState } from 'react'
-import DataContext from '../../utils/localStorageUtils'
+import {useRef, useState } from 'react'
 import Button from '../Button'
 import Model from '../Model'
 
 import './style.css'
+import { useData } from '../../contexts/DataContext'
 
 const ControlButtons = props => {
     const [modelOpen, setModelOpen] = useState(false)
 
-    const dataContext = useContext(DataContext)
+    const dataContext = useData()
 
     const handler = useRef({ title: '', handler: null })
 

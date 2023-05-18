@@ -1,31 +1,35 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons" 
-import { useContext, useState } from "react"
-import Theme from "../../utils/Theme"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import './style.css'
-import DataContext from "../../utils/localStorageUtils"
+import "./style.css";
+import { useData } from "../../contexts/DataContext";
+import { useTheme } from "../../contexts/Theme";
 
-const SearchField = props => {
-    
-    const theme = useContext(Theme)
-    const dataContext = useContext(DataContext)
-    
-    const [baseData] = useState(dataContext.data)
+const SearchField = (props) => {
+  const theme = useTheme();
+  const { setSearchText } = useData();
 
-    const searchHandler = (event) =>{
-        let filtered_data = baseData.filter((item) =>  item.value.match(event.target.value)  || item.assignee.match(event.target.value) )
-        dataContext.changeHandlerLocal(filtered_data)
-    }
+  const searchHandler = (e) => {
+    setSearchText(e.target.value);
+  };
 
-    return <div className="search-field" style={{
-        backgroundColor:theme.pallete.paper,
-        boxShadow:`0 2px 8px 0 ${theme.pallete.dropShadow}`
-    }}>
-        <FontAwesomeIcon color={theme.pallete.textSecondary} icon={faSearch} />
-        <input onInput={searchHandler} placeholder="Search TODOs" style={{color:theme.pallete.textPrimary}} type={'search'} />
+  return (
+    <div
+      className="search-field"
+      style={{
+        backgroundColor: theme.pallete.paper,
+        boxShadow: `0 2px 8px 0 ${theme.pallete.dropShadow}`,
+      }}
+    >
+      <FontAwesomeIcon color={theme.pallete.textSecondary} icon={faSearch} />
+      <input
+        onInput={searchHandler}
+        placeholder="Search TODOs"
+        style={{ color: theme.pallete.textPrimary }}
+        type={"search"}
+      />
     </div>
-}
+  );
+};
 
-
-export default SearchField
+export default SearchField;

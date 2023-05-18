@@ -1,15 +1,15 @@
-import { useContext, useState } from 'react'
-import DataContext from '../../utils/localStorageUtils'
-import Theme from '../../utils/Theme'
+import {  useState } from 'react'
 import Button from '../Button'
 import uuid from 'react-uuid';
 import './style.css'
+import { useData } from '../../contexts/DataContext';
+import { useTheme } from '../../contexts/Theme';
 
 const Model = props => {
     const [inputData, setInputData] = useState({ value: '', assignee: '' });
 
-    const theme = useContext(Theme)
-    const dataContext = useContext(DataContext)
+    const theme = useTheme()
+    const dataContext = useData()
 
     const inputHandler = (event) => {
         const key = event.target.name

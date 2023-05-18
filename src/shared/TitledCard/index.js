@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useContext } from "react"
-import Theme from "../../utils/Theme"
 import './style.css'
+import { useTheme } from "../../contexts/Theme"
 
 const TitledCard = props =>{
-    const theme = useContext(Theme)
+    const theme = useTheme()
 
     return <div className="titled-card" style={{
         background:`linear-gradient(281.77deg, ${theme.pallete.light}  32.97%,  ${theme.pallete.dark} 92.16%)`,
