@@ -30,19 +30,19 @@ export const DataProvider = ({ children }) => {
 
   const getData = async () => {
     await axios
-      .get("http://localhost:5000/api/todo")
+      .get("https://todolist-backend-wg1w.onrender.com/api/todo")
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err));
   };
   const updateTodoById = async (id, dt) => {
     await axios
-      .put("http://localhost:5000/api/todo/" + id, { ...dt })
+      .put("https://todolist-backend-wg1w.onrender.com/api/todo/" + id, { ...dt })
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err.message));
   };
   const updateTodo = async (d) => {
     await axios
-      .put("http://localhost:5000/api/todo", { list: d })
+      .put("https://todolist-backend-wg1w.onrender.com/api/todo", { list: d })
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err.message));
 
@@ -51,7 +51,7 @@ export const DataProvider = ({ children }) => {
   const deleteTodo = async (ids) => {
     console.log({ ids: ids });
     await axios
-      .post("http://localhost:5000/api/todo", { ids: ids })
+      .post("https://todolist-backend-wg1w.onrender.com/api/todo", { ids: ids })
       .then()
       .catch((err) => console.log(err.message));
     getData();
@@ -59,7 +59,7 @@ export const DataProvider = ({ children }) => {
   const addTodo = async (d) => {
     console.log(d)
     await axios
-      .post("http://localhost:5000/api/todo/add", {...d})
+      .post("https://todolist-backend-wg1w.onrender.com/api/todo/add", {...d})
       .then()
       .catch((err) => console.log(err.message));
     getData();
