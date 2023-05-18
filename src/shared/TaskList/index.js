@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import TaskCard from "../TaskCard";
 
 import "./style.css";
@@ -54,10 +54,10 @@ const TaskList = (props) => {
             >
               {p[1].map((item, index) => (
                 <TaskCard
-                  key={item.id}
+                  key={item._id}
                   setIndexHandler={setIndexHandler}
-                  id={item.id}
-                  value={item.value}
+                  id={item._id}
+                  value={item.title}
                   assignee={item.assignee}
                   taskEnable={item.state}
                   inputEnable={item.id !== indexItem}
