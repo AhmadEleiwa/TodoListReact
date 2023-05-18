@@ -9,6 +9,7 @@ const DataContext = createContext({
   updateTodo: () => {},
   deleteTodo: () => {},
   addTodo: () => {},
+  updateTodoById: () => {},
 });
 
 export const useData = () => useContext(DataContext);
@@ -33,27 +34,35 @@ export const DataProvider = ({ children }) => {
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err));
   };
-
+  const updateTodoById = async (id, dt) => {
+    await axios
+      .put("http://localhost:5000/api/todo/" + id, { ...dt })
+      .then((res) => setData(res.data.todo))
+      .catch((err) => console.log(err.message));
+  };
   const updateTodo = async (d) => {
     await axios
       .put("http://localhost:5000/api/todo", { list: d })
-      .then(res => setData(res.data.todo))
+      .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err.message));
+
     // getData();
   };
   const deleteTodo = async (ids) => {
     console.log({ ids: ids });
-    await axios 
+    await axios
       .post("http://localhost:5000/api/todo", { ids: ids })
       .then()
       .catch((err) => console.log(err.message));
     getData();
   };
   const addTodo = async (d) => {
+    console.log(d)
     await axios
-      .post("http://localhost:5000/api/todo", { list: d })
-      .then(getData())
+      .post("http://localhost:5000/api/todo/add", {...d})
+      .then()
       .catch((err) => console.log(err.message));
+    getData();
   };
 
   return (
@@ -66,6 +75,7 @@ export const DataProvider = ({ children }) => {
         updateTodo: updateTodo,
         deleteTodo: deleteTodo,
         addTodo: addTodo,
+        updateTodoById: updateTodoById,
       }}
     >
       {children}
