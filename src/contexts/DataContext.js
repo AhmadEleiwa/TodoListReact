@@ -2,49 +2,56 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const DataContext = createContext({
+  searchText: "",
+  setSearchText: () => {},
   data: [],
   statistics: { all: 0, done: 0, pending: 0, deleted: 0 },
-  changeHandler: () => {},
+  updateTodo: () => {},
+  deleteTodo: () => {},
+  addTodo: () => {},
 });
 
-export const useData = useContext(DataContext);
+export const useData = () => useContext(DataContext);
 
 export const DataProvider = ({ children }) => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(() => []);
+  const [searchText, setSearchText] = useState("");
   let done = 0,
     pending = 0;
-  for (item of data) {
+  for (let item of data) {
     if (item.status === false) pending += 1;
     else done += 1;
   }
   let statistics = { all: data.length, done: done, pending: pending };
-
   useEffect(() => {
     getData();
   }, []);
 
   const getData = async () => {
-    let res = await axios.get(
-      "https://todolist-backend-wg1w.onrender.com/api/todo"
-    );
-    setData(res.data.todos);
+    await axios
+      .get("http://localhost:5000/api/todo")
+      .then((res) => setData(res.data.todo))
+      .catch((err) => console.log(err));
   };
 
-  const updateTodo = async (id, d) => {
+  const updateTodo = async (d) => {
     await axios
-      .put("https://todolist-backend-wg1w.onrender.com/api/todo/" + id, { d })
-      .then(getData())
+      .put("http://localhost:5000/api/todo", { list: d })
+      .then(res => setData(res.data.todo))
       .catch((err) => console.log(err.message));
+    // getData();
   };
-  const deleteTodo = async (id) => {
-    await axios
-      .delete("https://todolist-backend-wg1w.onrender.com/api/todo/" + id)
-      .then(getData())
+  const deleteTodo = async (ids) => {
+    console.log({ ids: ids });
+    await axios 
+      .post("http://localhost:5000/api/todo", { ids: ids })
+      .then()
       .catch((err) => console.log(err.message));
+    getData();
   };
   const addTodo = async (d) => {
     await axios
-      .post("https://todolist-backend-wg1w.onrender.com/api/todo/", { d })
+      .post("http://localhost:5000/api/todo", { list: d })
       .then(getData())
       .catch((err) => console.log(err.message));
   };
@@ -52,6 +59,8 @@ export const DataProvider = ({ children }) => {
   return (
     <DataContext.Provider
       value={{
+        searchText: searchText,
+        setSearchText: setSearchText,
         data: data,
         statistics: statistics,
         updateTodo: updateTodo,
