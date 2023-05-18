@@ -1,4 +1,4 @@
-import { createContext, useContext } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const darkMode = {
   paper: "#095B83",
@@ -32,7 +32,7 @@ const Theme = createContext({
   pallete: lightMode,
 });
 
-export const useTheme = useContext(Theme)
+export const useTheme = () => useContext(Theme)
 
 export const ThemeProvider = (props) => {
   const [mode, setMode] = useState(false);
