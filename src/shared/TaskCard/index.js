@@ -13,7 +13,7 @@ const TaskCard = (props) => {
   const [modelOpen, setModelOpen] = useState(false);
 
   const theme = useTheme();
-  const { data, updateTodo, deleteTodo } = useData();
+  const { data, updateTodo, updateTodoById, deleteTodo } = useData();
 
   const editTask = (e) => {
     const item = data.find((p) => p._id === props.id);
@@ -22,7 +22,7 @@ const TaskCard = (props) => {
   };
   const taskCheckHandler = (e) => {
     const item = data.find((p) => p._id === props.id);
-    updateTodo([{ ...item, status: !item.status }]);
+    updateTodoById(props.id, { ...item, status: !item.status });
   };
   return (
     <div
