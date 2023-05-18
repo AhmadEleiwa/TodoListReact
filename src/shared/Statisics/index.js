@@ -29,11 +29,7 @@ const Statsics = (props) => {
         value={dataContext.statistics.pending}
         icon={faClock}
       />
-      <TitledCard
-        title="DELETED"
-        value={dataContext.statistics.deleted}
-        icon={faTrash}
-      />
+
     </div>
   );
 };
