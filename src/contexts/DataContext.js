@@ -30,14 +30,14 @@ export const DataProvider = ({ children }) => {
 
   const getData = async () => {
     await axios
-      .get("http://localhost:5500/api/todo")
+      .get("https://podcast-dudm.onrender.com/api/todo")
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err));
   };
 
   const updateTodo = async (ids, payload) => {
     await axios
-      .put("http://localhost:5500/api/todo", { ids: ids, payload })
+      .put("https://podcast-dudm.onrender.com/api/todo", { ids: ids, payload })
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err.message));
 
@@ -46,7 +46,7 @@ export const DataProvider = ({ children }) => {
   const deleteTodo = async (ids) => {
     console.log({ ids: ids });
     await axios
-      .post("http://localhost:5500/api/todo", { ids: ids })
+      .post("https://podcast-dudm.onrender.com/api/todo", { ids: ids })
       .then()
       .catch((err) => console.log(err.message));
     getData();
@@ -54,7 +54,7 @@ export const DataProvider = ({ children }) => {
   const addTodo = async (d) => {
     console.log(d)
     await axios
-      .post("http://localhost:5500/api/todo/add", {...d})
+      .post("https://podcast-dudm.onrender.com/api/todo/add", {...d})
       .then()
       .catch((err) => console.log(err.message));
     getData();
