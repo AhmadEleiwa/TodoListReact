@@ -16,14 +16,13 @@ const TaskCard = (props) => {
   const { data, updateTodo, updateTodoById, deleteTodo } = useData();
 
   const editTask = (e) => {
-    const item = data.find((p) => p._id === props.id);
-    updateTodo([{ ...item, title: inputData }]);
-    console.log(inputData)
+    updateTodo([props.id],{title:inputData});
+
   };
   const taskCheckHandler = (e) => {
-    const item = data.find((p) => p._id === props.id);
-    updateTodoById(props.id, { ...item, status: !item.status });
+    updateTodo([props.id], {status:!props.taskEnable});
   };
+  
   return (
     <div
       className="task-card"

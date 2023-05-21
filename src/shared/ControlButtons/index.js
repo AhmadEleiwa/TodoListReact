@@ -13,24 +13,24 @@ const ControlButtons = (props) => {
   const handler = useRef({ title: "", handler: null });
 
   const markAllHandler = () => {
-    let data = [...dataContext.data];
-    data = data.map((i) => {
-      return { ...i, status: true };
-    });
-    dataContext.updateTodo(data);
+    const ids = dataContext.data.map(p => p._id)
+
+    dataContext.updateTodo(ids, {status:false});
   };
 
   const marAsUndone = () => {
-    let data = [...dataContext.data];
-    data = data.map((i) => {
-      return { ...i, status: false };
-    });
-    dataContext.updateTodo(data);
+    const ids = dataContext.data.map(p => p._id)
+    dataContext.updateTodo(ids,{status:true});
   };
 
   const clearDoneTask = () => {
-    let data = dataContext.data.filter((i) => i.status === true);
-    dataContext.deleteTodo(data);
+    let ids = []
+    for(let i of dataContext.data){
+      if(i.status === true){
+        ids.push(i._id)
+      }
+    }
+    dataContext.deleteTodo(ids);
   };
   const clearAll = () => {
     dataContext.deleteTodo(dataContext.data);
