@@ -1,14 +1,15 @@
 import "./style.css";
 import { useTheme } from "../../contexts/Theme";
-import React, { MouseEventHandler, ReactNode } from "react";
+import React, { FC, MouseEventHandler, ReactNode } from "react";
 
-interface Props {
-  className: String;
-  onClick: MouseEventHandler<HTMLButtonElement>;
-  children:ReactNode;
+type Props = {
+  className: String,
+  onClick: MouseEventHandler<HTMLButtonElement>,
+  children:ReactNode,
 }
 
-const Button = ({ className, onClick, children }: Props) => {
+
+const Button :FC<Props> = ({className, onClick, children}) => {
   const theme = useTheme();
   return (
     <button
