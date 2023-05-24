@@ -1,39 +1,52 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import CheckBox from "../CheckBox";
 import Model from "../Model";
 
 import "./style.css";
-import { useData } from "../../contexts/DataContext";
+import { Todo, useData } from "../../contexts/DataContext";
 import { useTheme } from "../../contexts/Theme";
+import React, { FC } from "react";
 
-const TaskCard = (props) => {
-  const [inputData, setInputData] = useState();
-  const [modelOpen, setModelOpen] = useState(false);
+interface Props extends Omit<Todo, "status"> {
+  taskEnable: boolean;
+  setIndexHandler:(index:string)=>void;
+  inputEnable: boolean;
+}
+
+const TaskCard: FC<Props> = ({
+  title,
+  assignee,
+  _id,
+  taskEnable,
+  setIndexHandler,
+  inputEnable,
+}) => {
+  const [inputData, setInputData] = useState<string>();
+  const [modelOpen, setModelOpen] = useState<boolean>(false);
 
   const theme = useTheme();
-  const { data, updateTodo, updateTodoById, deleteTodo } = useData();
+  const { data, updateTodo, deleteTodo } = useData();
 
-  const editTask = (e) => {
-    updateTodo([props.id],{title:inputData});
-
+  const editTask = () => {
+    updateTodo!([_id], { title: inputData });
   };
   const taskCheckHandler = (e) => {
-    updateTodo([props.id], {status:!props.taskEnable});
+    updateTodo!([_id], { status: !taskEnable });
   };
-  
+
   return (
     <div
       className="task-card"
       style={{
-        backgroundColor: props.taskEnable
+        backgroundColor: taskEnable
           ? theme.pallete.disabled
           : theme.pallete.paper,
         boxShadow: `0 2px 8px 0 ${theme.pallete.dropShadow}`,
       }}
     >
-      <CheckBox onClick={taskCheckHandler} checked={props.taskEnable} />
+      <CheckBox onClick={taskCheckHandler} checked={taskEnable} />
       <div className="task-body">
         <input
           onKeyDown={(e) => {
@@ -41,29 +54,28 @@ const TaskCard = (props) => {
             if (e.key === "Enter") {
               console.log("enter");
               editTask();
-              props.setIndexHandler(-1);
+              setIndexHandler('-1');
             }
           }}
           style={{
             color: theme.pallete.main,
             border: `1px solid ${theme.pallete.paperBorder}`,
-            textDecoration: props.taskEnable ? "line-through" : "none",
+            textDecoration: taskEnable ? "line-through" : "none",
           }}
-          onInput={(e)=>setInputData(e.target.value)}
-          disabled={props.inputEnable}
-          defaultValue={props.value}
+          onChange={(e) => setInputData(e.target.value)}
+          disabled={inputEnable}
+          defaultValue={title}
         />
-        <p style={{ color: theme.pallete.textSecondary }}>{props.assignee}</p>
+        <p style={{ color: theme.pallete.textSecondary }}>{assignee}</p>
       </div>
       <div className="control">
         <FontAwesomeIcon
           icon={faEdit}
           onClick={() => {
-            props.setIndexHandler(props.id);
-            
+            setIndexHandler(_id);
           }}
           color={
-            !props.taskEnable
+            !taskEnable
               ? theme.pallete.main
               : theme.pallete.buttonDisabled
           }
@@ -80,7 +92,7 @@ const TaskCard = (props) => {
         isOpen={modelOpen}
         conformModel
         submitHandler={() => {
-          deleteTodo([props.id]);
+          deleteTodo!([_id]);
         }}
         onClose={() => {
           setModelOpen(false);
