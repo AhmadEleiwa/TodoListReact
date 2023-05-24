@@ -1,13 +1,12 @@
 import "./style.css";
 import { useTheme } from "../../contexts/Theme";
 import React, { FC, MouseEventHandler } from "react";
-interface Props extends React.PropsWithChildren  {
-  className: String,
-  onClick: MouseEventHandler<HTMLButtonElement>,
-
+interface Props extends React.PropsWithChildren {
+  className?: String;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
-const Button :FC<Props> = ({className, onClick, children}) => {
+const Button: FC<Props> = ({ className, onClick, children }) => {
   const theme = useTheme();
   return (
     <button
