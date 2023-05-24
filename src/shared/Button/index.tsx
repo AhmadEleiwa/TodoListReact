@@ -3,7 +3,7 @@ import { useTheme } from "../../contexts/Theme";
 import React, { FC, MouseEventHandler } from "react";
 interface Props extends React.PropsWithChildren {
   className?: String;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button: FC<Props> = ({ className, onClick, children }) => {
