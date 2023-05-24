@@ -7,8 +7,9 @@ import ControlButtons from "../shared/ControlButtons";
 import Statsics from "../shared/Statisics";
 import SearchField from "../shared/SearchField";
 import { DataProvider } from "../contexts/DataContext";
+import React, {FC} from "react";
 import "./style.css";
-const HomePage = (props) => {
+const HomePage:FC = () => {
  
   const [allowGroupByAssigne, setAllowGroupByAssignee] = useState(false);
 
