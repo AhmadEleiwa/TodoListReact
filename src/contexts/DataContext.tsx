@@ -8,13 +8,13 @@ import React, {
   SetStateAction,
 } from "react";
 
-type Todo = {
+export type Todo = {
   _id:string,
   title: string;
-  asssignee: string;
+  assignee: string;
   status: boolean;
 };
-type Statistics = {
+export type Statistics = {
   done: number;
   all: number;
   pending: number;
@@ -25,9 +25,9 @@ interface Data {
   searchText: string;
   statistics: Statistics;
   setSearchText?: Dispatch<SetStateAction<string>>;
-  updateTodo?: (ids: string[], payload: object) => {};
-  deleteTodo?: (ids: string[]) => {};
-  addTodo?: (data: Todo) => {};
+  updateTodo?: (ids: string[], payload: object) => void;
+  deleteTodo?: (ids: string[]) => void;
+  addTodo?: (data: Todo) => void;
 }
 const DataContext = createContext<Data>({
   data: [],
