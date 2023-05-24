@@ -1,5 +1,19 @@
-import { createContext, useContext, useState } from "react";
+import React, { PropsWithChildren, createContext, useContext, useState, FC} from "react";
 
+type Pallete = {
+  paper:string,
+  dark:string,
+  light:string, 
+  main:string,
+  disabled: string,
+  buttonDisabled:string,
+  paperBorder:string,
+  textPrimary:string,
+  textSecondary:string,
+  backgroundPaper:string,
+  dropShadow:string
+  
+}
 export const darkMode = {
   paper: "#095B83",
   dark: "#095B83",
@@ -26,16 +40,22 @@ export const lightMode = {
   backgroundPaper: "#F5F5F5",
   dropShadow: "#66666640",
 };
-const Theme = createContext({
-  mode: "light",
+
+type ThemeData = {
+  mode:boolean,
+  switchHandler: () => void,
+  pallete: Pallete,
+}
+const Theme = createContext<ThemeData>({
+  mode: true,
   switchHandler: () => {},
   pallete: lightMode,
 });
 
 export const useTheme = () => useContext(Theme)
 
-export const ThemeProvider = (props) => {
-  const [mode, setMode] = useState(false);
+export const ThemeProvider:FC<PropsWithChildren>= ({children}) => {
+  const [mode, setMode] = useState<boolean>(false);
   return (
     <Theme.Provider
       value={{
@@ -46,7 +66,7 @@ export const ThemeProvider = (props) => {
         pallete: mode ? lightMode : darkMode,
       }}
     >
-      {props.children}
+      {children}
     </Theme.Provider>
   );
 };
