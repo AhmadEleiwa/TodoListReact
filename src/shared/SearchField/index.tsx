@@ -9,7 +9,7 @@ const SearchField: FC = () => {
   const theme = useTheme();
   const { setSearchText } = useData();
 
-  const searchHandler = (e) => {
+  const searchHandler = (e:any) => {
     setSearchText!(e.target.value);
   };
 

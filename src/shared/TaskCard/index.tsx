@@ -32,7 +32,7 @@ const TaskCard: FC<Props> = ({
   const editTask = () => {
     updateTodo!([_id], { title: inputData });
   };
-  const taskCheckHandler = (e) => {
+  const taskCheckHandler = (e:any) => {
     updateTodo!([_id], { status: !taskEnable });
   };
 

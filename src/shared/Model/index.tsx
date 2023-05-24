@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, FormEventHandler, MouseEventHandler, useState } from "react";
 import Button from "../Button";
 import "./style.css";
 import { Todo, useData } from "../../contexts/DataContext";
@@ -28,13 +28,14 @@ const Model: FC<Props> = ({
   const theme = useTheme();
   const dataContext = useData();
 
-  const inputHandler = (event) => {
+  const inputHandler = (event:any) => {
     const key = event.target.name;
     setInputData({ ...inputData, [key]: event.target.value });
   };
 
-  const onSubmitHandler = (event) => {
+  const onSubmitHandler = (event:any) => {
     event.preventDefault();
+    
     dataContext.addTodo!({ ...inputData, status: false });
     onClose!();
   };

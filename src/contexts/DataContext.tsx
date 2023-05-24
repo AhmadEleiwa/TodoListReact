@@ -6,6 +6,8 @@ import React, {
   useState,
   Dispatch,
   SetStateAction,
+  FC,
+  PropsWithChildren,
 } from "react";
 
 export type Todo = {
@@ -37,7 +39,7 @@ const DataContext = createContext<Data>({
 
 export const useData = () => useContext<Data>(DataContext);
 
-export const DataProvider = ({ children }) => {
+export const DataProvider :FC<PropsWithChildren> = ({ children }) => {
   const [data, setData] = useState<Todo[]>(() => []);
   const [searchText, setSearchText] = useState<string>("");
   let done = 0,
@@ -58,7 +60,7 @@ export const DataProvider = ({ children }) => {
 
   const getData = async () => {
     await axios
-      .get("https://podcast-dudm.onrender.com/api/todo")
+      .get("https://todolist-backend-wg1w.onrender.com/apu/todo")
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err));
   };

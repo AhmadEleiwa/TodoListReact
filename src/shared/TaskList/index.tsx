@@ -18,14 +18,15 @@ const TaskList: FC<Props> = ({groupByAssignee}) => {
     else setIndexItem('-1');
   };
 
-  let groupByAssigneeItem,
+  let groupByAssigneeItem : any,
     dat = data!.filter((p) => p.title.match(searchText));
   if (groupByAssignee) {
     let s = [...data!];
-    let ls = {};
+
+    let ls: any = {name:'ahmad'};
     for (let item of s) {
-      if (ls[item.assignee] === undefined) ls[item.assignee] = [item];
-      else ls[item.assignee].push(item);
+      if (ls[item.assignee ] === undefined) ls[item.assignee ] = [item];
+      else ls[item.assignee ].push(item);
     }
     groupByAssigneeItem = Object.entries(ls);
   }
@@ -46,7 +47,7 @@ const TaskList: FC<Props> = ({groupByAssignee}) => {
           ))}
         </div>
       ) : (
-        groupByAssigneeItem.map((p) => (
+        groupByAssigneeItem.map((p:any) => (
           <div key={p[0]} style={{ marginTop: "1em" }}>
             <div
               style={{
@@ -56,7 +57,7 @@ const TaskList: FC<Props> = ({groupByAssignee}) => {
                 gap: "1em",
               }}
             >
-              {p[1].map((item, index) => (
+              {p[1].map((item:any, index:number) => (
                 <TaskCard
                   key={item._id}
                   setIndexHandler={setIndexHandler}

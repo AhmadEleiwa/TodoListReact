@@ -8,7 +8,7 @@ import React, { PropsWithChildren, FC } from "react";
 const Siwtch: FC<PropsWithChildren> = ({ children }) => {
   const theme = useTheme();
 
-  const siwtchHandler = (e) => {
+  const siwtchHandler = () => {
     theme.switchHandler();
   };
 
