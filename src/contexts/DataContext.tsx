@@ -1,29 +1,56 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
-const DataContext = createContext({
-  searchText: "",
-  setSearchText: () => {},
+type Todo = {
+  title: string;
+  asssignee: string;
+  status: boolean;
+};
+type Statistics = {
+  done: number;
+  all: number;
+  pending: number;
+  deleted: number;
+};
+interface Data {
+  data?: Todo[];
+  searchText: string;
+  statistics: Statistics;
+  setSearchText?: Dispatch<SetStateAction<string>>;
+  updateTodo?: (ids: string[], payload: object) => {};
+  deleteTodo?: (ids: string[]) => {};
+  addTodo?: (data: Todo) => {};
+}
+const DataContext = createContext<Data>({
   data: [],
-  statistics: { all: 0, done: 0, pending: 0, deleted: 0 },
-  updateTodo: () => {},
-  deleteTodo: () => {},
-  addTodo: () => {},
-  updateTodoById: () => {},
+  searchText: "",
+  statistics: { deleted: 0, done: 0, all: 0, pending: 0 },
 });
 
 export const useData = () => useContext(DataContext);
 
 export const DataProvider = ({ children }) => {
-  const [data, setData] = useState(() => []);
-  const [searchText, setSearchText] = useState("");
+  const [data, setData] = useState<Todo[]>(() => []);
+  const [searchText, setSearchText] = useState<string>("");
   let done = 0,
     pending = 0;
   for (let item of data) {
     if (item.status === false) pending += 1;
     else done += 1;
   }
-  let statistics = { all: data.length, done: done, pending: pending };
+  let statistics: Statistics = {
+    all: data.length,
+    done: done,
+    pending: pending,
+    deleted: 0,
+  };
   useEffect(() => {
     getData();
   }, []);
@@ -52,9 +79,9 @@ export const DataProvider = ({ children }) => {
     getData();
   };
   const addTodo = async (d) => {
-    console.log(d)
+    console.log(d);
     await axios
-      .post("https://podcast-dudm.onrender.com/api/todo/add", {...d})
+      .post("https://podcast-dudm.onrender.com/api/todo/add", { ...d })
       .then()
       .catch((err) => console.log(err.message));
     getData();
@@ -70,7 +97,6 @@ export const DataProvider = ({ children }) => {
         updateTodo: updateTodo,
         deleteTodo: deleteTodo,
         addTodo: addTodo,
-
       }}
     >
       {children}
