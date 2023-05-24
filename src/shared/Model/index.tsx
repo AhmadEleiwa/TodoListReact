@@ -5,11 +5,11 @@ import { Todo, useData } from "../../contexts/DataContext";
 import { useTheme } from "../../contexts/Theme";
 
 type Props = {
-  onClose: () => void;
-  isOpen: boolean;
-  conformModel: boolean;
-  title: string;
-  submitHandler: () => void;
+  onClose?: () => void;
+  isOpen?: boolean;
+  conformModel?: boolean;
+  title?: string;
+  submitHandler?: () => void;
 };
 const Model: FC<Props> = ({
   onClose,
@@ -36,7 +36,7 @@ const Model: FC<Props> = ({
   const onSubmitHandler = (event) => {
     event.preventDefault();
     dataContext.addTodo!({ ...inputData, status: false });
-    onClose();
+    onClose!();
   };
   return (
     <>
@@ -53,8 +53,8 @@ const Model: FC<Props> = ({
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                submitHandler();
-                onClose();
+                submitHandler!();
+                onClose!();
               }}
             >
               <p>{title}</p>
