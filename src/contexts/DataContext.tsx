@@ -35,7 +35,7 @@ const DataContext = createContext<Data>({
   statistics: { deleted: 0, done: 0, all: 0, pending: 0 },
 });
 
-export const useData = () => useContext(DataContext);
+export const useData = () => useContext<Data>(DataContext);
 
 export const DataProvider = ({ children }) => {
   const [data, setData] = useState<Todo[]>(() => []);
