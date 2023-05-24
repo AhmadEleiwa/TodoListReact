@@ -60,14 +60,14 @@ export const DataProvider :FC<PropsWithChildren> = ({ children }) => {
 
   const getData = async () => {
     await axios
-      .get("https://todolist-backend-wg1w.onrender.com/apu/todo")
+      .get("https://todolist-backend-wg1w.onrender.com/api/todo")
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err));
   };
 
   const updateTodo = async (ids:string[], payload:object) => {
     await axios
-      .put("https://podcast-dudm.onrender.com/api/todo", { ids: ids, payload })
+      .put("https://todolist-backend-wg1w.onrender.com/api/todo", { ids: ids, payload })
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err.message));
 
@@ -76,7 +76,7 @@ export const DataProvider :FC<PropsWithChildren> = ({ children }) => {
   const deleteTodo = async (ids:string[]) => {
     console.log({ ids: ids });
     await axios
-      .post("https://podcast-dudm.onrender.com/api/todo", { ids: ids })
+      .post("https://todolist-backend-wg1w.onrender.com/api/todo", { ids: ids })
       .then()
       .catch((err) => console.log(err.message));
     getData();
@@ -84,7 +84,7 @@ export const DataProvider :FC<PropsWithChildren> = ({ children }) => {
   const addTodo = async (d:Todo) => {
     console.log(d);
     await axios
-      .post("https://podcast-dudm.onrender.com/api/todo/add", { ...d })
+      .post("https://todolist-backend-wg1w.onrender.com/api/todo/add", { ...d })
       .then()
       .catch((err) => console.log(err.message));
     getData();
