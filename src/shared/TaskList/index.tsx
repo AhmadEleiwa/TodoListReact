@@ -1,40 +1,44 @@
-import {useState } from "react";
+import { useState } from "react";
 import TaskCard from "../TaskCard";
 
 import "./style.css";
 import { useData } from "../../contexts/DataContext";
 import { useTheme } from "../../contexts/Theme";
+import React, { FC } from "react";
 
-const TaskList = (props) => {
-  const [indexItem, setIndexItem] = useState(-1);
+type Props ={ 
+  groupByAssignee:boolean,
+}
+const TaskList: FC<Props> = ({groupByAssignee}) => {
+  const [indexItem, setIndexItem] = useState<string>('-1');
   const { data, searchText } = useData();
   const theme = useTheme();
-  const setIndexHandler = (index) => {
+  const setIndexHandler = (index:string) => {
     if (indexItem !== index) setIndexItem(index);
-    else setIndexItem(-1);
+    else setIndexItem('-1');
   };
 
-  let groupByAssignee,
-    dat = data.filter((p) => p.title.match(searchText));
-  if (props.groupByAssignee) {
-    let s = [...data];
+  let groupByAssigneeItem,
+    dat = data!.filter((p) => p.title.match(searchText));
+  if (groupByAssignee) {
+    let s = [...data!];
     let ls = {};
     for (let item of s) {
       if (ls[item.assignee] === undefined) ls[item.assignee] = [item];
       else ls[item.assignee].push(item);
     }
-    groupByAssignee = Object.entries(ls);
+    groupByAssigneeItem = Object.entries(ls);
   }
   return (
     <>
-      {!props.groupByAssignee ? (
+      {!groupByAssignee ? (
         <div className="task-list">
           {dat.map((item, index) => (
             <TaskCard
               key={item._id}
               setIndexHandler={setIndexHandler}
-              id={item._id}
-              value={item.title}
+              _id={item._id}
+              title={item.title}
               assignee={item.assignee}
               taskEnable={item.status}
               inputEnable={item._id !== indexItem}
@@ -42,7 +46,7 @@ const TaskList = (props) => {
           ))}
         </div>
       ) : (
-        groupByAssignee.map((p) => (
+        groupByAssigneeItem.map((p) => (
           <div key={p[0]} style={{ marginTop: "1em" }}>
             <div
               style={{
@@ -56,8 +60,8 @@ const TaskList = (props) => {
                 <TaskCard
                   key={item._id}
                   setIndexHandler={setIndexHandler}
-                  id={item._id}
-                  value={item.title}
+                  _id={item._id}
+                  title={item.title}
                   assignee={item.assignee}
                   taskEnable={item.state}
                   inputEnable={item.id !== indexItem}
