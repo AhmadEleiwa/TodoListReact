@@ -3,13 +3,12 @@ import {
   faCheckToSlot,
   faCheck,
   faClock,
-  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-
+import React, {FC} from "react";
 import "./style.css";
 import { useData } from "../../contexts/DataContext";
 
-const Statsics = (props) => {
+const Statsics: FC = () => {
   const dataContext = useData();
 
   return (
