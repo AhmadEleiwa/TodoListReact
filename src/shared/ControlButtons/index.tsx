@@ -1,45 +1,54 @@
-import { useRef, useState } from "react";
+import { useRef, useState, FC } from "react";
 import Button from "../Button";
 import Model from "../Model";
-
+import React from "react";
 import "./style.css";
 import { useData } from "../../contexts/DataContext";
 
-const ControlButtons = (props) => {
-  const [modelOpen, setModelOpen] = useState(false);
+type CurrentHandler = {
+  title:string,
+  handler: ()=>void,
+}
+type Props = {
+  groupByAssignee:()=>void,
+
+}
+const ControlButtons:FC<Props> = ({groupByAssignee}) => {
+  const [modelOpen, setModelOpen] = useState<boolean>(false);
 
   const dataContext = useData();
 
-  const handler = useRef({ title: "", handler: null });
+  const handler = useRef<CurrentHandler>({ title: "", handler: ()=>{} });
 
   const markAllHandler = () => {
-    const ids = dataContext.data.map(p => p._id)
+    const ids = dataContext.data!.map((p) => p._id);
 
-    dataContext.updateTodo(ids, {status:false});
+    dataContext.updateTodo!(ids, { status: false });
   };
 
   const marAsUndone = () => {
-    const ids = dataContext.data.map(p => p._id)
-    dataContext.updateTodo(ids,{status:true});
+    const ids = dataContext.data!.map((p) => p._id);
+    dataContext.updateTodo!(ids, { status: true });
   };
 
   const clearDoneTask = () => {
-    let ids = []
-    for(let i of dataContext.data){
-      if(i.status === true){
-        ids.push(i._id)
+    let ids: string[] = [];
+    for (let i of dataContext.data!) {
+      if (i.status === true) {
+        ids.push(i._id);
       }
     }
-    dataContext.deleteTodo(ids);
+    dataContext.deleteTodo!(ids);
   };
   const clearAll = () => {
-    dataContext.deleteTodo(dataContext.data);
+    const ids = dataContext.data!.map((p) => p._id);
+    dataContext.deleteTodo!(ids);
   };
-  const groupByAssignee = () => {
-    props.groupByAssignee();
+  const groupByAssigneeHandler = () => {
+    groupByAssignee();
   };
 
-  const openHandler = (value) => {
+  const openHandler = (value:CurrentHandler) => {
     setModelOpen(true);
     handler.current = value;
   };
@@ -67,7 +76,7 @@ const ControlButtons = (props) => {
       >
         Clear All Tasks
       </Button>
-      <Button onClick={groupByAssignee}>Group By Assignee</Button>
+      <Button onClick={groupByAssigneeHandler}>Group By Assignee</Button>
       <Model
         isOpen={modelOpen}
         conformModel
