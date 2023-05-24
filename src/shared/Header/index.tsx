@@ -2,13 +2,13 @@ import Button from "../Button";
 import Logo from "./Logo";
 import Siwtch from "./Switch";
 import "./style.css";
-import React, { PropsWithChildren, useState, FC } from "react";
+import React, { useState, FC } from "react";
 
 import Model from "../Model";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import { useTheme } from "../../contexts/Theme";
-const Header: FC<PropsWithChildren> = () => {
+const Header: FC = () => {
   const { pallete } = useTheme();
 
   const [modelOpen, setModelOpen] = useState<boolean>(false);
