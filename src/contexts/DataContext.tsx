@@ -9,6 +9,7 @@ import React, {
 } from "react";
 
 type Todo = {
+  _id:string,
   title: string;
   asssignee: string;
   status: boolean;
@@ -62,7 +63,7 @@ export const DataProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const updateTodo = async (ids, payload) => {
+  const updateTodo = async (ids:string[], payload:object) => {
     await axios
       .put("https://podcast-dudm.onrender.com/api/todo", { ids: ids, payload })
       .then((res) => setData(res.data.todo))
@@ -70,7 +71,7 @@ export const DataProvider = ({ children }) => {
 
     // getData();
   };
-  const deleteTodo = async (ids) => {
+  const deleteTodo = async (ids:string[]) => {
     console.log({ ids: ids });
     await axios
       .post("https://podcast-dudm.onrender.com/api/todo", { ids: ids })
@@ -78,7 +79,7 @@ export const DataProvider = ({ children }) => {
       .catch((err) => console.log(err.message));
     getData();
   };
-  const addTodo = async (d) => {
+  const addTodo = async (d:Todo) => {
     console.log(d);
     await axios
       .post("https://podcast-dudm.onrender.com/api/todo/add", { ...d })
