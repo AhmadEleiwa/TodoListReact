@@ -1,11 +1,29 @@
-import { useState } from "react";
+import React, { FC, useState } from "react";
 import Button from "../Button";
 import "./style.css";
-import { useData } from "../../contexts/DataContext";
+import { Todo, useData } from "../../contexts/DataContext";
 import { useTheme } from "../../contexts/Theme";
 
-const Model = (props) => {
-  const [inputData, setInputData] = useState({ title: "", assignee: "" });
+type Props = {
+  onClose: () => void;
+  isOpen: boolean;
+  conformModel: boolean;
+  title: string;
+  submitHandler: () => void;
+};
+const Model: FC<Props> = ({
+  onClose,
+  isOpen,
+  conformModel,
+  title,
+  submitHandler,
+}) => {
+  const [inputData, setInputData] = useState<Todo>({
+    _id: "",
+    title: "",
+    assignee: "",
+    status: false,
+  });
 
   const theme = useTheme();
   const dataContext = useData();
@@ -15,17 +33,15 @@ const Model = (props) => {
     setInputData({ ...inputData, [key]: event.target.value });
   };
 
-  const submitHandler = (event) => {
+  const onSubmitHandler = (event) => {
     event.preventDefault();
-    dataContext.addTodo({...inputData, status:false})
-    props.onClose();
+    dataContext.addTodo!({ ...inputData, status: false });
+    onClose();
   };
   return (
     <>
-      {props.isOpen && (
-        <div className="black-drop" onClick={props.onClose}></div>
-      )}
-      {props.isOpen && (
+      {isOpen && <div className="black-drop" onClick={onClose}></div>}
+      {isOpen && (
         <div
           className="model"
           style={{
@@ -33,20 +49,20 @@ const Model = (props) => {
             boxShadow: `0px 2px 8px 0 ${theme.pallete.dropShadow}`,
           }}
         >
-          {props.conformModel ? (
+          {conformModel ? (
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                props.submitHandler();
-                props.onClose();
+                submitHandler();
+                onClose();
               }}
             >
-              <p>{props.title}</p>
+              <p>{title}</p>
               <Button>CONFORM</Button>
-              <Button onClick={props.onClose}>CANCLE</Button>
+              <Button onClick={onClose}>CANCLE</Button>
             </form>
           ) : (
-            <form onSubmit={submitHandler}>
+            <form onSubmit={onSubmitHandler}>
               <input
                 name="title"
                 onInput={inputHandler}
@@ -63,10 +79,10 @@ const Model = (props) => {
                 style={{ color: theme.pallete.textPrimary }}
               />
               <Button>ADD TASK</Button>
-              <Button onClick={props.onClose}>CANCLE</Button>
+              <Button onClick={onClose}>CANCLE</Button>
 
               <datalist id="assignees">
-                {dataContext.data.map((p, index) => {
+                {dataContext.data!.map((p, index) => {
                   return <option key={index} value={p.assignee} />;
                 })}
               </datalist>
