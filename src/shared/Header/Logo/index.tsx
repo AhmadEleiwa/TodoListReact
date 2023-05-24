@@ -1,9 +1,9 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-
+import  { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import React, { FC } from "react"
 import {faT} from '@fortawesome/free-solid-svg-icons'
 import { useTheme } from "../../../contexts/Theme"
 
-const Logo = props =>{
+    const Logo: FC=() =>{
     const theme = useTheme()
     return <div style={{display:'flex', alignItems:'center', gap:'0.2em '}}>
         <FontAwesomeIcon icon={faT} color={theme.pallete.main} fontSize={'2em'} />
