@@ -4,13 +4,13 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "./style.css";
 import { useData } from "../../contexts/DataContext";
 import { useTheme } from "../../contexts/Theme";
-
-const SearchField = (props) => {
+import React, { FC } from "react";
+const SearchField: FC = () => {
   const theme = useTheme();
   const { setSearchText } = useData();
 
   const searchHandler = (e) => {
-    setSearchText(e.target.value);
+    setSearchText!(e.target.value);
   };
 
   return (
