@@ -6,6 +6,7 @@ Todo list is an app that allow you to handle your task in localStorage. This pro
 ## How To Run 
 You can try the demo [Demo](https://ahmadeleiwa.github.io/TodoListReact/).
 Or you can even clone the project and thne install the dependencies  through this command 
+Once yout open the website the date could take so long to be fetch. And that becouse the free hosting services in backend 
 ```bash
 npm i 
 ```
