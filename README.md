@@ -9,7 +9,7 @@ Or you can even clone the project and thne install the dependencies  through thi
 ```bash
 npm i 
 ```
-Once yout open the website the date could take so long to be fetch. And that becouse the free hosting services in backend 
+Once you open the website the date could take so long to be fetch. And that becouse the free hosting services in backend 
 
 then You  run it with this  command
 ```bash
