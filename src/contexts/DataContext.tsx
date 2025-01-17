@@ -29,14 +29,16 @@ interface Data {
   setSearchText?: Dispatch<SetStateAction<string>>;
   updateTodo?: (ids: string[], payload: object) => void;
   deleteTodo?: (ids: string[]) => void;
-  addTodo?: (data: Todo) => void;
+  addTodo?: (data: Todo) => void;       
 }
 const DataContext = createContext<Data>({
   data: [],
   searchText: "",
   statistics: { deleted: 0, done: 0, all: 0, pending: 0 },
 });
+const apiToken = "http://13.51.64.210:5500/api";
 
+console.log(apiToken)
 export const useData = () => useContext<Data>(DataContext);
 
 export const DataProvider :FC<PropsWithChildren> = ({ children }) => {
@@ -60,14 +62,14 @@ export const DataProvider :FC<PropsWithChildren> = ({ children }) => {
 
   const getData = async () => {
     await axios
-      .get("https://todolist-backend-wg1w.onrender.com/api/todo")
+      .get(`${apiToken}/todo`)
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err));
   };
 
   const updateTodo = async (ids:string[], payload:object) => {
     await axios
-      .put("https://todolist-backend-wg1w.onrender.com/api/todo", { ids: ids, payload })
+      .put(`${apiToken}/todo`, { ids: ids, payload })
       .then((res) => setData(res.data.todo))
       .catch((err) => console.log(err.message));
 
@@ -76,7 +78,7 @@ export const DataProvider :FC<PropsWithChildren> = ({ children }) => {
   const deleteTodo = async (ids:string[]) => {
     console.log({ ids: ids });
     await axios
-      .post("https://todolist-backend-wg1w.onrender.com/api/todo", { ids: ids })
+      .post(`${apiToken}/todo`, { ids: ids })
       .then()
       .catch((err) => console.log(err.message));
     getData();
@@ -84,7 +86,7 @@ export const DataProvider :FC<PropsWithChildren> = ({ children }) => {
   const addTodo = async (d:Todo) => {
     console.log(d);
     await axios
-      .post("https://todolist-backend-wg1w.onrender.com/api/todo/add", { ...d })
+      .post(`${apiToken}/todo/add`, { ...d })
       .then()
       .catch((err) => console.log(err.message));
     getData();
